@@ -36,6 +36,7 @@ export default {
           observeParents: true,
           loop:true,
           autoplay:true
+          
         };
       },
     },
