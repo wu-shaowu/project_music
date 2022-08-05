@@ -1,6 +1,6 @@
 <template>
 	<div class="mv-page">
-		<h2 class="mv-title">MV</h2>
+		<!-- <h2 class="mv-title">MV</h2> -->
 		<div class="mv-first">
 			<swiper-list
 				:swiperOption="swiperOption"

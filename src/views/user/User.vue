@@ -1,11 +1,11 @@
 <template>
   <div class="user">
     <div class="image">
-      <img :src="user.avatarUrl" alt />
+      <img :src="user.avatarUrl" />
     </div>
-    <p class="name">{{user.nickname}}</p>
+    <p class="name">{{ user.nickname }}</p>
 
-    <p class="sign">{{user.signature}}</p>
+    <!-- <p class="sign">{{ user.signature }}</p> -->
     <div class="logout" @click="logout">登出</div>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
       Cookies.remove("MUSIC_U");
       Cookies.remove("__csrf");
       Cookies.remove("NMTID");
-			document.cookie = 'MUSIC_U=1'
+      document.cookie = "MUSIC_U=1";
       this.$store.commit("userClear");
       this.$router.push("/login");
     },
@@ -50,36 +50,28 @@ export default {
 
 <style lang='scss' scoped>
 .user {
-  height: calc(100vh - 10rem) !important;
+  height: 400rpx !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .image {
     text-align: center;
+    margin: 5rem 0 0 0;
     img {
       width: 30vw;
-      border: 5px solid #ff2c5685;
+      margin: 1rem;
     }
   }
 
   .name {
-    font-size: 3.5rem;
-    margin: 2rem 0;
-    border-bottom: solid 2px #8a898e65;
-    border-radius: 2rem;
-    width: 100%;
-    text-align: center;
-    padding-bottom: 3rem;
+    font-size: 3rem;
+    margin: 1rem 0;
   }
-  .sign {
-    width: 100%;
-    padding-top: 3rem;
-    font-size: 1.5rem;
-    text-align: center;
-  }
+
   .logout {
-    margin: 10rem 0 -10rem 0;
+    margin: 5rem 0 -5rem 0;
     font-size: 3rem;
   }
 }

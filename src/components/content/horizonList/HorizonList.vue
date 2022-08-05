@@ -28,7 +28,7 @@ export default {
     },
     row: {
       type: Number,
-      default: 4,
+      default: 10,
     },
     titleL: {
       type: String,

@@ -24,6 +24,7 @@ Vue.filter('ar', function(v) {
 
 Vue.prototype.$bus = new Vue()
 
+// 传底下路由菜单，会变红
 Vue.prototype.$tap = function(ref) {
 	if (this.$route.path == `/${ref}`) {
 		this.$refs[ref].classList.add('clickRed', 'red')

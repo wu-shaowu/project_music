@@ -1,6 +1,7 @@
 <template>
   <div class="browse-page">
-    <h2 class="browse-title">浏览</h2>
+    <!-- <h2 class="browse-title">浏览</h2> -->
+    <!-- 顶部轮播图 -->
     <div class="browse-banner">
       <div v-swiper="swiperOption" instance-name="Swiper">
         <div class="swiper-wrapper">
@@ -23,16 +24,19 @@
       @refresh="$emit('refresh')"
       @itemClick="sendList"
     ></swiper-list>
-    <swiper-list
+    <!-- 热门没有数据 -->
+    <!-- <swiper-list
       :list="relatedList"
       titleL="热门"
       :swiperOption="swiperOption2"
       @refresh="$emit('refresh')"
       class="hot-list"
       @itemClick="sendList"
-    ></swiper-list>
-    <horizon-list :list="newSongs" @title="moreNewSongs" titleR="探索更多"></horizon-list>
+    ></swiper-list> -->
+        
     <rank-list :rankList="rankList" @refresh="$emit('refresh')" @title="moreRank"></rank-list>
+    <horizon-list :list="newSongs" @title="moreNewSongs" titleR="探索更多"></horizon-list>
+
   </div>
 </template>
 
@@ -86,7 +90,7 @@ export default {
   created() {
     this.getBanner();
     this.getHighQualityList();
-    this.getRelatedList();
+    // this.getRelatedList();
     this.getNewSongs();
     this.getTopList();
   },
@@ -94,6 +98,7 @@ export default {
   methods: {
     async getBanner() {
       let { banners } = await getBanner_();
+      console.log(banners);
       filterList(banners.filter((v) => v.song).map((v) => (v = v.song))).then(
         (list) => {
           this.banner = list.map((x) => {
@@ -105,17 +110,21 @@ export default {
         }
       );
     },
-    async getRelatedList() {
-      let { playlists } = await getRelatedList_(1);
-      this.relatedList = playlists.map((v) => {
-        return {
-          creator: v.creator.nickname,
-          picUrl: v.coverImgUrl,
-          name: v.name,
-          id: v.id,
-        };
-      });
-    },
+    //热门为空
+    // async getRelatedList() {
+    //   let { playlists } = await getRelatedList_(1);
+    //   console.log(playlists);
+    //   console.log("看这里");
+    //   this.relatedList = playlists.map((v) => {
+    //     return {
+    //       creator: v.creator.nickname,
+    //       picUrl: v.coverImgUrl,
+    //       name: v.name,
+    //       id: v.id,
+    //     };
+    //   });
+    // },
+    //获得华语的轮播列表
     getHighQualityList() {
       getHighQualityList_("华语").then(({ playlists }) => {
         this.huayuList = filterList2(playlists);

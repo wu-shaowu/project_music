@@ -11,7 +11,7 @@
         @click="sendListId(rankList.id)"
       />
       <div class="rank-text">
-        <h2>{{rankList.name}}</h2>
+        <!-- <h2>{{rankList.name}}</h2> -->
         <div class="elellipsis">
           <div class="elellipsis" v-for="(item, index) in rankList.tracks" :key="index">
             <p class="elellipsis first">
@@ -97,6 +97,7 @@ export default {
         padding: 0.3rem 0;
         .first {
           padding: 0.2rem 0;
+          margin-bottom: 0.5rem;
           span {
             font-size: 1.3rem;
             color: #111;
@@ -104,13 +105,14 @@ export default {
         }
         .second {
           padding-left: 1rem;
+          padding: 1rem;
         }
       }
     }
     @media screen and (min-width: 768px) {
       .rank-text {
         flex: 1;
-        padding-left: 2rem;
+        margin: 2rem;
         h2 {
           font-size: 3rem;
           color: rgb(24, 24, 24);

@@ -1,7 +1,7 @@
 <template>
   <div v-swiper:mySwiper="swiperOption" class="swiper-list">
     <div class="swiper-title" :class="{'s-title':small}">
-      <p>{{titleL}}</p>
+      <p>{{titleL}}</p>2222
       <p @click="$emit('title')">{{titleR}}</p>
     </div>
     <div class="swiper-wrapper">
@@ -11,6 +11,7 @@
           @load="$emit('refresh')"
           @click="itemClick(item)"
         />
+        123
         <p class="elellipsis">{{item.name}}</p>
         <p class="elellipsis">{{item.creator || ar(item.ar)}}</p>
       </div>
@@ -33,6 +34,8 @@ export default {
           slidesPerView: "2",
           observer: true,
           observeParents: true,
+          loop:true,
+          autoplay:true
         };
       },
     },
@@ -69,7 +72,6 @@ export default {
     refresh() {
       if (this.timer) clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        console.log(111111111111);
         this.$emit("refresh");
       }, 100);
     },

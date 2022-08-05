@@ -19,6 +19,7 @@ const ArtistAlbums = () => import('@/views/artist/artistAlbums/ArtistAlbums')
 const Comment = () => import('@/views/comment/Comment')
 const Search = () => import('@/views/search/Search')
 const MV = () => import('@/views/mv/MV')
+const Test = () => import('@/views/test')
 Vue.use(VueRouter)
 
 const routes = [
@@ -109,6 +110,10 @@ const routes = [
 			},
 		],
 	},
+	{
+		path:'/test',
+		component:Test
+	}
 ]
 
 const router = new VueRouter({

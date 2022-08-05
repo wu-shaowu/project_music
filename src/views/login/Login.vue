@@ -79,9 +79,7 @@ export default {
     //   console.log(123);
     // }
 
-    // var my = setInterval(helloFun, 2000);
-
-    this.checkQrCode()
+    this.checkQrCode();
   },
   beforeRouteLeave(to, from, next) {
     clearInterval(this.checkTimer);
@@ -113,26 +111,23 @@ export default {
     //     }
     //   }, 3000)
 
-
-
-
-
     async checkQrCode() {
-      const checkTimer = setInterval(async () => {
+      this.checkTimer = setInterval(async () => {
         const res = await _checkQrCode(this.qrKey);
-		console.log(res);
-		console.log("看这里");
-        // if (this.$store.state.user) return clearInterval(this.checkTimer);
+        console.log(res);
+        console.log("看这里");
+        if (this.$store.state.user) return clearInterval(this.checkTimer);
         if (res.code === 800) {
-			alert("二维码过期");
+          alert("二维码过期");
           const qrKeyRes = await _getQrKey();
           this.qrKey = qrKeyRes.data.unikey;
           const qrImgRes = await _getQrCode(this.qrKey);
           this.qrImg = qrImgRes.data.qrimg;
-		  clearInterval(checkTimer)
+          clearInterval(this.checkTimer);
         }
         if (res.code === 803) {
-			console.log("登录成功！！！！！！！！！！！！！！！！！！！！");
+             clearInterval(this.checkTimer);
+          console.log("登录成功！！！！！！！！！！！！！！！！！！！！");
           let cookies = res.cookie.split(";");
           cookies.forEach((cookie) => {
             let [key, value] = cookie.split("=");
@@ -141,9 +136,9 @@ export default {
           const res2 = await getAccount();
           Cookies.set("profile", JSON.stringify(res2.profile));
           this.$store.commit("userAdd");
-          this.$router.push("/user");
-		// this.$router.push({name:'Library'});
-          clearInterval(this.checkTimer);
+          // this.$router.push("/user");
+          this.$router.push({name:'Library'});
+       
         }
       }, 10000);
     },
@@ -152,20 +147,20 @@ export default {
       if (!this.checkPhone()) return;
       let data = await userLogin_(this.phone, this.password);
       console.log(data);
-      // if (data.code !== 200) {
-      // 	this.msg = res.message
-      // 	setTimeout(() => {
-      // 		this.$refs.res2.style.opacity = '0'
-      // 	}, 2000)
-      // 	this.$refs.res2.style.opacity = '1'
-      // 	return
-      // }
+      if (data.code !== 200) {
+      	this.msg = res.message
+      	setTimeout(() => {
+      		this.$refs.res2.style.opacity = '0'
+      	}, 2000)
+      	this.$refs.res2.style.opacity = '1'
+      	return
+      }
 
-      // let i = data.cookie.indexOf(';')
-      // document.cookie = data.cookie.slice(0, i)
-      // Cookies.set('profile', JSON.stringify(data.profile))
-      // this.$store.commit('userAdd')
-      // this.$router.push('/user')
+      let i = data.cookie.indexOf(';')
+      document.cookie = data.cookie.slice(0, i)
+      Cookies.set('profile', JSON.stringify(data.profile))
+      this.$store.commit('userAdd')
+      this.$router.push('/user')
     },
     checkPhone() {
       const regPhone = /^[1][3,4,5,7,8][0-9]{9}$/;
