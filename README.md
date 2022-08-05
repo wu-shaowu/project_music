@@ -6,13 +6,6 @@ https://binaryify.github.io/NeteaseCloudMusicApi
 
 把前端打包的文件放到后端public里直接访问
 
-<<<<<<< HEAD
-
-
-QQ: 421786477
-
-=======
->>>>>>> f69903fc78b0ec9898d50ac0e2489b6466c626db
 ## Project setup
 ```
 npm install
