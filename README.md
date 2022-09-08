@@ -4,7 +4,11 @@
 ### 后端接口 ： 
 https://binaryify.github.io/NeteaseCloudMusicApi
 
-把前端打包的文件放到后端public里直接访问
+###1、直接下载后端接口，node app.js 打开3000端口，前端请求3000接口
+
+###2、把前端打包的文件放到后端public里直接访问
+
+###   建议使用网易云app扫码登录
 
 ## Project setup
 ```
